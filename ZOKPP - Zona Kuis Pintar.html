@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://localhost/ZOKPP_website_online_tahap1/ZOKPP/ -->
+<html lang="id"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZOKPP - Zona Kuis Pintar</title>
+<style>
+:root{--ink:#263149;--purple:#6748c7;--pink:#ff8eae;--green:#238b67}
+*{box-sizing:border-box}body{margin:0;padding:16px;font-family:system-ui,Segoe UI,sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 0,#ffe0eb,transparent 32%),linear-gradient(135deg,#f0eaff,#e8f8ef);min-height:100vh}
+.wrap{max-width:900px;margin:auto}header{text-align:center;padding:10px 0 18px}.logo{font-size:2.6rem}h1{margin:0;color:#5638aa;font-size:clamp(2rem,6vw,3rem)}header p{margin:8px 0;color:#687187}
+.panel{background:#ffffffed;border:1px solid white;border-radius:24px;padding:clamp(16px,4vw,27px);box-shadow:0 14px 40px #493b7417}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px}
+.mode{padding:18px;text-align:left;background:#f5f1ff;border:2px solid transparent;border-radius:18px;color:var(--ink);min-height:145px}
+.mode:hover{border-color:#a58de9;transform:translateY(-2px)}.mode .emoji{font-size:2.2rem}.mode h2{margin:6px 0 4px;font-size:1.1rem}.mode p{margin:0;color:#667085;font-size:.9rem;line-height:1.4}
+button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:13px;padding:11px 14px;font-weight:750;transition:.15s}button:active{transform:scale(.98)}
+.primary{background:linear-gradient(100deg,#6748c7,#9673e7);color:white}.secondary{background:#f0ecfa;color:#57459b}.choice{background:#f3f0fa;color:#39334e;border:2px solid transparent;text-align:left}.choice:hover:not(:disabled){border-color:#a18be3}.choice:disabled{cursor:default;opacity:1}.choice.correct{background:#def6e9;border-color:#49b789;color:#176244}.choice.wrong{background:#ffe3e9;border-color:#ef8ba0;color:#9b3048}
+.field{display:flex;flex-direction:column;gap:6px;margin:10px 0}.field label{font-weight:700;font-size:.92rem}.field input,.field select{border:1px solid #dcd6eb;border-radius:12px;padding:11px 12px;background:white;color:var(--ink);width:100%}
+.settings{display:grid;grid-template-columns:1fr 1fr;gap:12px}.top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:12px}.pill{border-radius:99px;background:#f0eaff;color:#5841a6;padding:7px 11px;font-weight:750;font-size:.88rem}.progress{height:8px;background:#eeeaf5;border-radius:20px;overflow:hidden;margin-bottom:17px}.bar{height:100%;width:0;background:linear-gradient(90deg,#6748c7,#ff8eae)}
+.prompt{text-align:center;font-weight:800;font-size:1.17rem;margin:12px 0 17px}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.feedback{text-align:center;min-height:28px;font-weight:800;margin-top:13px}.hint{text-align:center;min-height:25px;color:#7156b8;font-weight:600;margin:9px 0}
+.picture{height:235px;border-radius:20px;background:linear-gradient(145deg,#263d36,#82976b);position:relative;overflow:hidden;display:grid;place-items:center;border:5px solid #e6eddf;margin-bottom:14px}.animal{font-size:clamp(7rem,25vw,10rem);filter:blur(3px) brightness(.65);transform:scale(1.8);transition:.3s}.picture:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#14271eaa 0 20%,transparent 20% 60%,#14271e88 60%);z-index:2}.picture:after{content:"";position:absolute;width:43%;height:140%;left:-8%;top:-15%;background:repeating-linear-gradient(75deg,#294d32 0 17px,#477344 18px 34px,#1d3828 35px 48px);transform:rotate(12deg);z-index:3}.picture.revealed .animal{filter:none;transform:scale(1)}.picture.revealed:before,.picture.revealed:after{opacity:.12}.picture.easy .animal{filter:blur(1px) brightness(.85);transform:scale(1.3)}.qmark{position:absolute;z-index:4;right:15px;top:5px;font-size:3.5rem;color:#fff1c5;font-weight:900}
+.actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:16px}.hidden{display:none!important}.result{text-align:center}.result .big{font-size:4rem}.small{color:#778095;text-align:center;font-size:.85rem;margin:16px 0 3px}
+.leader{margin-top:18px;background:#faf8ff;border-radius:16px;padding:13px}.leader h3{margin:0 0 8px}.leader ol{margin:0;padding-left:24px}.leader li{padding:4px 0}.review{margin-top:18px;text-align:left;background:#faf8ff;border-radius:16px;padding:14px}.review-item{padding:12px 0;border-bottom:1px solid #e7e1f1}.review-item:last-child{border:0}.status-ok{color:#16845d;font-weight:800}.status-no{color:#c13d59;font-weight:800}.timerline{display:flex;align-items:center;gap:9px;justify-content:center;margin:8px 0 14px;font-weight:800}.timertrack{height:8px;background:#eeeaf5;border-radius:20px;overflow:hidden;max-width:260px;flex:1}.timerbar{height:100%;width:100%;background:#32a879;transition:width 1s linear}
+@media(max-width:520px){body{padding:10px}.settings{grid-template-columns:1fr}.answers{gap:8px}.choice{padding:11px 9px}.picture{height:210px}}
+</style></head>
+<body><div class="wrap">
+<header><div class="logo">🧠 🐾 💡</div><h1>ZOKPP</h1><p>Main, berpikir, dan tambah pengetahuan sambil bersenang-senang!</p></header>
+<section class="panel" id="home">
+ <h2 style="text-align:center;margin:0 0 5px">Selamat datang di arena kuis!</h2>
+ <p style="text-align:center;color:#687187;margin:0 0 12px">Masukkan nama pemain, pilih tingkat kesulitan, lalu pilih permainan.</p>
+ <div class="settings">
+  <div class="field"><label for="player">👤 Nama pemain</label><input id="player" maxlength="18" placeholder="Contoh: Eca" autocomplete="nickname" fdprocessedid="h5ur76"></div>
+  <div class="field"><label for="difficulty">🎯 Tingkat kesulitan</label><select id="difficulty" fdprocessedid="90h0u"><option value="easy">Mudah • 30 detik/soal</option><option value="medium" selected="">Sedang • 20 detik/soal</option><option value="hard">Sulit • 12 detik/soal</option></select></div>
+ </div>
+ <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0 13px"><strong>Pilih permainanmu</strong><label style="font-size:.9rem"><input type="checkbox" id="sound" checked=""> 🔊 Suara aktif</label></div>
+ <div class="menu">
+  <button class="mode" onclick="start('animal')" fdprocessedid="vlygn"><div class="emoji">🐯</div><h2>Tebak Gambar Hewan</h2><p>10 gambar hewan misterius, petunjuk, dan tombol buka gambar.</p></button>
+  <button class="mode" onclick="start('logic')" fdprocessedid="gub37g"><div class="emoji">🤔😂</div><h2>Logika &amp; Plesetan Lucu</h2><p>10 teka-teki logika dan pertanyaan lucu yang bikin berpikir.</p></button>
+  <button class="mode" onclick="start('it')" fdprocessedid="ylp8vm"><div class="emoji">💻🌐</div><h2>Pengetahuan Sistem &amp; TI</h2><p>12 pertanyaan komputer, jaringan, database, IoT, dan keamanan.</p></button>
+ </div>
+ <div class="leader" id="leaderHome"><h3>🏆 Papan Peringkat Online</h3><ol id="leaderList"><li>una — 47 poin (animal)</li></ol><small>Peringkat bersama pemain ZOKPP.</small></div>
+</section>
+<section class="panel hidden" id="game">
+ <div class="top"><span class="pill" id="category">Kategori</span><span class="pill" id="round">Soal 1</span><span class="pill">⭐ Skor: <span id="score">0</span></span></div>
+ <div class="progress"><div class="bar" id="bar"></div></div>
+ <div class="timerline">⏱️ <span id="timeText">20</span> detik <div class="timertrack"><div class="timerbar" id="timerbar"></div></div></div>
+ <div class="prompt" id="question">Pertanyaan</div>
+ <div class="picture hidden" id="picture"><div class="animal" id="animal"></div><div class="qmark">?</div></div>
+ <div class="hint" id="hint">Petunjuk tersedia jika kamu membutuhkannya.</div>
+ <div class="answers" id="answers"></div><div class="feedback" id="feedback" aria-live="polite"></div>
+ <div class="actions"><button class="secondary" id="hintBtn">💡 Petunjuk</button><button class="secondary hidden" id="revealBtn">👀 Buka Gambar</button><button class="secondary" onclick="goHome()">⌂ Menu Utama</button><button class="primary hidden" id="nextBtn">Berikutnya ➜</button></div>
+</section>
+<section class="panel result hidden" id="result"><div class="big">🏆</div><h2>Permainan Selesai!</h2><p id="playerResult"></p><p style="font-size:1.35rem;font-weight:800">Skor kamu: <span id="finalScore">0</span></p><p id="message"></p><div class="leader"><h3>🏆 Papan Peringkat</h3><ol id="leaderResult"></ol></div><div class="review"><h3>📝 Review Hasil Permainan</h3><p>Periksa jawabanmu dan jawaban yang benar.</p><div id="reviewList"></div></div><div class="actions"><button class="primary" onclick="replay()">🔄 Main Lagi</button><button class="secondary" onclick="goHome()">⌂ Pilih Kuis Lain</button></div></section>
+<p class="small">ZOKPP • Kuis online • Papan peringkat bersama</p>
+</div>
+<script>
+const quizzes={
+animal:{title:"🐾 Tebak Gambar Hewan",items:[
+["Harimau","🐯","Kucing besar dengan belang hitam di tubuhnya.",["Harimau","Singa","Kucing","Serigala"]],["Gajah","🐘","Hewan darat besar yang memiliki belalai.",["Badak","Kuda nil","Gajah","Kerbau"]],["Jerapah","🦒","Hewan tinggi dengan leher yang sangat panjang.",["Unta","Jerapah","Zebra","Rusa"]],["Panda","🐼","Beruang hitam-putih yang suka bambu.",["Koala","Panda","Beruang","Kucing"]],["Buaya","🐊","Reptil bersisik yang hidup di sungai.",["Kadal","Komodo","Ular","Buaya"]],["Burung Hantu","🦉","Burung bermata besar yang aktif pada malam hari.",["Elang","Burung Hantu","Merpati","Kakatua"]],["Gurita","🐙","Hewan laut bertubuh lunak dengan delapan lengan.",["Ubur-ubur","Cumi-cumi","Gurita","Kepiting"]],["Kanguru","🦘","Hewan Australia yang melompat dan punya kantong.",["Kelinci","Kanguru","Koala","Rusa"]],["Merak","🦚","Burung yang bisa mengembangkan bulu ekornya seperti kipas.",["Merak","Kalkun","Angsa","Cendrawasih"]],["Kelelawar","🦇","Mamalia yang bisa terbang dan sering aktif malam hari.",["Elang","Tupai","Kelelawar","Kupu-kupu"]]]},
+logic:{title:"🤔😂 Logika & Plesetan Lucu",items:[
+["Jam","Apa yang memiliki jarum tetapi tidak bisa menjahit?","Pikirkan benda yang menunjukkan waktu.",["Jam","Kompas","Termometer","Meteran"]],["Lubang","Semakin banyak diambil, semakin besar. Apakah itu?","Bayangkan sesuatu yang terbentuk saat tanah digali.",["Bayangan","Lubang","Gunung","Tumpukan"]],["Semua bulan","Ada 12 bulan dalam setahun. Berapa bulan yang memiliki 28 hari?","Jangan hanya menghitung bulan yang tepat 28 hari.",["1 bulan","2 bulan","6 bulan","Semua bulan"]],["Ayam jantan","Seekor ayam jantan bertelur di atas atap. Ke arah mana telurnya jatuh?","Perhatikan jenis ayam yang disebutkan.",["Ke kiri","Ke kanan","Ayam jantan tidak bertelur","Tergantung angin"]],["Kaki meja","Apa yang punya empat kaki tetapi tidak bisa berjalan?","Benda ini sering ada di ruang makan.",["Kucing","Meja","Kuda","Burung"]],["Gema","Apa yang mengikuti suara kita saat berteriak di tempat tertentu?","Suara bisa memantul kembali.",["Bayangan","Gema","Angin","Cahaya"]],["Peta","Apa yang punya kota, sungai, dan jalan, tetapi bukan kota sungguhan?","Benda ini membantu mencari arah.",["Peta","Buku cerita","Kalender","Foto keluarga"]],["Rahasia","Apa yang tidak lagi menjadi rahasia setelah diberitahu kepada semua orang?","Pikirkan sesuatu yang seharusnya dijaga.",["Janji","Rahasia","Tebakan","Nama"]],["Ikan goreng","Ikan apa yang tidak bisa berenang?","Ini plesetan sederhana tentang makanan.",["Ikan mas","Ikan paus","Ikan goreng","Ikan hiu"]],["Keheningan","Apa yang bisa pecah tanpa jatuh ke lantai?","Pikirkan keadaan ketika tidak ada suara.",["Gelas","Piring","Keheningan","Batu"]]]},
+it:{title:"💻 Pengetahuan Sistem & Teknologi Informasi",items:[
+["CPU","Komponen komputer yang menjadi pusat pemrosesan instruksi adalah ...","Ingat komponen yang menjalankan instruksi program.",["CPU","Monitor","Keyboard","Speaker"]],["RAM","Memori yang menyimpan data sementara saat program berjalan adalah ...","Data pada memori ini umumnya hilang saat listrik dimatikan.",["SSD","RAM","ROM","Flashdisk"]],["IP Address","Apa fungsi utama alamat IP pada jaringan komputer?","Alamat ini membantu perangkat dikenali dan berkomunikasi.",["Mengatur warna layar","Mengidentifikasi perangkat di jaringan","Mendinginkan prosesor","Mencetak dokumen"]],["Router","Perangkat jaringan yang meneruskan paket data antarjaringan adalah ...","Perangkat ini sering menghubungkan jaringan lokal ke internet.",["Switch","Router","Hub pasif","Repeater audio"]],["Database","Kumpulan data terorganisasi agar mudah diakses dan dikelola disebut ...","Data dapat disusun dalam tabel atau model lainnya.",["Browser","Database","Compiler","Driver"]],["SQL","Bahasa yang umum digunakan untuk mengelola data basis data relasional adalah ...","Bahasa ini memiliki perintah SELECT, INSERT, UPDATE, dan DELETE.",["HTML","SQL","CSS","JPEG"]],["HTML","Teknologi untuk menyusun struktur konten halaman web adalah ...","Heading, paragraf, dan tautan dibuat dengan teknologi ini.",["HTML","CSS","PHP","SQL"]],["CSS","Apa fungsi utama CSS dalam pengembangan website?","Teknologi ini mengatur warna, ukuran, dan tata letak.",["Mengatur tampilan halaman","Menyimpan data pelanggan","Mengirim paket jaringan","Mengelola sistem operasi"]],["IoT","Internet of Things mengacu pada konsep ...","Pikirkan benda fisik yang terhubung dan dapat bertukar data.",["Komputer tanpa listrik","Benda fisik terhubung ke internet dan bertukar data","Program menggambar","Sistem khusus mengetik"]],["ESP32","Papan mikrokontroler ESP32 banyak digunakan dalam IoT karena memiliki ...","Perhatikan fitur komunikasi nirkabel yang tersedia.",["Wi-Fi dan Bluetooth","Pemindai sidik jari wajib","Proyektor bawaan","Hard disk internal"]],["Phishing","Upaya menipu pengguna agar memberikan kata sandi melalui pesan atau situs palsu disebut ...","Serangan ini sering menyamar sebagai layanan tepercaya.",["Backup","Phishing","Defragmentasi","Kompresi"]],["Backup","Apa tujuan utama melakukan backup data?","Bayangkan jika perangkat rusak atau file terhapus.",["Memperbesar monitor","Membuat salinan cadangan data","Mempercepat ketikan","Menghapus virus otomatis"]]]}
+};
+let mode="",items=[],idx=0,score=0,answered=false,hintUsed=false,timer=null,timeLeft=20,playerName="Pemain",seconds=20,gameReviews=[];
+function $(id){return document.getElementById(id)}function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function sound(kind){if(!$("sound").checked)return;try{let C=window.AudioContext||window.webkitAudioContext,ctx=new C(),o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type="sine";o.frequency.value=kind==="good"?740:kind==="bad"?190:520;g.gain.setValueAtTime(.12,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.22);o.start();o.stop(ctx.currentTime+.23);o.onended=()=>ctx.close()}catch(e){}}
+function getSeconds(){return $("difficulty").value==="easy"?30:$("difficulty").value==="hard"?12:20}
+function start(which){playerName=$("player").value.trim()||"Pemain";mode=which;items=shuffle(quizzes[mode].items);idx=0;score=0;gameReviews=[];seconds=getSeconds();$("home").classList.add("hidden");$("result").classList.add("hidden");$("game").classList.remove("hidden");render()}
+function stopTimer(){if(timer){clearInterval(timer);timer=null}}
+function startTimer(){stopTimer();timeLeft=seconds;updateTimer();timer=setInterval(()=>{timeLeft--;updateTimer();if(timeLeft<=0){stopTimer();if(!answered){sound("bad");$("feedback").textContent="⏰ Waktu habis! Jawabannya: "+items[idx][0];gameReviews.push({question:items[idx][1],chosen:"Tidak menjawab (waktu habis)",correct:items[idx][0],ok:false});lockAnswers(null);}}},1000)}
+function updateTimer(){$("timeText").textContent=timeLeft;$("timerbar").style.width=(timeLeft/seconds*100)+"%";$("timerbar").style.background=timeLeft<=5?"#e34e67":"#32a879"}
+function render(){
+ stopTimer();const q=items[idx];answered=false;hintUsed=false;
+ $("category").textContent=quizzes[mode].title;$("round").textContent=`Soal ${idx+1} dari ${items.length}`;$("score").textContent=score;$("bar").style.width=(idx/items.length*100)+"%";
+ $("question").textContent=mode==="animal"?"Hewan apakah yang bersembunyi di balik gambar ini?":q[1];
+ $("picture").classList.toggle("hidden",mode!=="animal");$("revealBtn").classList.toggle("hidden",mode!=="animal");if(mode==="animal"){$("animal").textContent=q[1];$("picture").className="picture"}
+ $("hint").textContent="Petunjuk tersedia jika kamu membutuhkannya.";$("feedback").textContent="";$("nextBtn").classList.add("hidden");$("hintBtn").disabled=false;$("revealBtn").disabled=false;$("hintBtn").classList.remove("hidden");$("answers").innerHTML="";
+ shuffle(q[3]).forEach(opt=>{let b=document.createElement("button");b.className="choice";b.textContent=opt;b.onclick=()=>choose(opt,b);$("answers").appendChild(b)});startTimer()
+}
+function choose(opt,btn){if(answered)return;stopTimer();const correct=opt===items[idx][0];gameReviews.push({question:items[idx][1],chosen:opt,correct:items[idx][0],ok:correct});if(correct){score+=Math.max(1,Math.round((hintUsed?5:10)*timeLeft/seconds));sound("good");$("feedback").textContent="Tepat sekali! Poin bertambah 🎉"}else{sound("bad");$("feedback").textContent="Belum tepat. Jawabannya: "+items[idx][0]+"."}lockAnswers(btn);$("score").textContent=score}
+function lockAnswers(selected){if(answered)return;answered=true;const answer=items[idx][0];[...$("answers").children].forEach(b=>{b.disabled=true;if(b.textContent===answer)b.classList.add("correct")});if(selected&&selected.textContent!==answer)selected.classList.add("wrong");if(mode==="animal")$("picture").classList.add("revealed");$("hintBtn").disabled=true;$("revealBtn").disabled=true;$("nextBtn").classList.remove("hidden");$("nextBtn").textContent=idx===items.length-1?"Lihat Hasil 🏆":"Berikutnya ➜"}
+$("hintBtn").onclick=()=>{if(answered||hintUsed)return;hintUsed=true;$("hint").textContent="💡 "+items[idx][2];$("hintBtn").disabled=true};
+$("revealBtn").onclick=()=>{if(answered)return;$("picture").classList.add("easy");$("feedback").textContent="Gambar dibuat lebih jelas. Coba tebak!";$("revealBtn").disabled=true};
+$("nextBtn").onclick=()=>{if(idx<items.length-1){idx++;render()}else finish()};
+
+async function showLeader(target){
+ const listEl=$(target); listEl.innerHTML="";
+ try{
+  const res=await fetch("api/leaderboard.php",{cache:"no-store"});
+  const data=await res.json();
+  if(!res.ok) throw new Error(data.error||"Gagal memuat peringkat");
+  if(!data.length){let li=document.createElement("li");li.textContent="Belum ada skor. Jadilah pemain pertama!";listEl.appendChild(li);return}
+  data.slice(0,10).forEach((x,i)=>{let li=document.createElement("li");li.textContent=`${x.player_name} — ${x.score} poin (${x.category})`;listEl.appendChild(li)});
+ }catch(e){let li=document.createElement("li");li.textContent="Peringkat online belum terhubung. Periksa koneksi/server.";listEl.appendChild(li)}
+}
+async function saveScore(){
+ const payload={player_name:playerName,score:score,total:items.length*10,category:mode};
+ const res=await fetch("api/submit-score.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+ const data=await res.json();
+ if(!res.ok) throw new Error(data.error||"Skor gagal disimpan");
+}
+async function finish(){stopTimer();try{await saveScore()}catch(e){alert("Skor belum tersimpan online: "+e.message)}
+ let box=$("reviewList");box.innerHTML="";
+ gameReviews.forEach((r,i)=>{let d=document.createElement("div");d.className="review-item";
+ let q=document.createElement("strong");q.textContent=(i+1)+". "+(mode==="animal"?"Tebak hewan: "+r.correct:r.question);d.appendChild(q);
+ let a=document.createElement("p");a.textContent="Jawaban kamu: "+r.chosen;d.appendChild(a);
+ let c=document.createElement("p");c.textContent="Jawaban benar: "+r.correct;d.appendChild(c);
+ let st=document.createElement("div");st.className=r.ok?"status-ok":"status-no";st.textContent=r.ok?"✓ Benar":"✗ Salah";d.appendChild(st);box.appendChild(d)});
+ $("game").classList.add("hidden");$("result").classList.remove("hidden");$("playerResult").textContent="Pemain: "+playerName+" • "+quizzes[mode].title;$("finalScore").textContent=score+" / "+items.length*10;$("message").textContent=score>=items.length*8?"Luar biasa! Kamu hebat! 🥇":score>=items.length*5?"Bagus! Terus berlatih ya! ⭐":"Jangan menyerah. Coba lagi dan tingkatkan skormu! 💪";showLeader("leaderResult");showLeader("leaderList")}
+function replay(){start(mode)}function goHome(){stopTimer();$("game").classList.add("hidden");$("result").classList.add("hidden");$("home").classList.remove("hidden");showLeader("leaderList")}
+showLeader("leaderList");
+</script><span id="PING_CONTENT_PUSH_NOTIFICATION" style="display: none;"></span><span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>
